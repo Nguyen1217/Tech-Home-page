@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Javascript Example</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+    <style>
+     input:focus {
+      outline: none;
+  }
+    </style>
+    </head>
+    <body>
+      
+      <!-- main -->
+          
+      <div class="clearfix">
+          <div id="app" class="flex flex-column max-width-2 mx-auto px2">
+              <h1 class="h1 caps center white">Get stuff done</h1>
+              <input type="text" class="py2 center border-none h2 red" v-model="newTodo" v-on:keyup.enter="addTodo" placeholder="Add a todo..." autofocus/>
+              <ul class=
+        "list-reset border-top white">
+                  <li v-for="todo in todos" class="flex justify-start items-center my2 h3">
+                      <input type="checkbox"/>
+                      <label class="mx2">{{ todo.item }}</label>
+                      <button v-on:click="removeTodo($index)" class="bg-navy border-none red">x</button>
+                  </li>
+              </ul>
+              <button v-on:click="removeAll" class="block bg-red navy bold border-none p2 caps" id="remove">Remove all</button>
+          </div>
+        </div>
+
+      <!-- Togg component -->       
+             
+             
+
+
+      
+        
+      
+      <script language="javascript" src="https://unpkg.com/vue@2.5.13/dist/vue.js"></script> 
+      <script>
+     function fetchArray(key){
+  if(sessionStorage.getItem(key)){
+    return JSON.parse(sessionStorage.getItem(key));
+  }
+  return [];
+}
+function saveArray(key, value){
+  sessionStorage.setItem(key, JSON.stringify(value));
+}
+
+new Vue({
+  el: '#app',
+  data: {
+    newTodo: '',
+    todos: fetchArray('todos')
+  },
+
+  ready: function(){
+  this.$watch("todos", function(value){
+    saveArray("todos", value);
+  });
+},
+
+  methods: {
+    addTodo: function () {
+      var item= this.newTodo.trim();
+      if (item) {
+        this.todos.push({ item: item });
+       
+      }
+    },
+        
+    removeTodo: function (index) {
+      this.todos.splice(index, 1);
+    },
+        removeAll: function (){
+            this.todos = [];
+        }
+  }
+});
+      </script>  
+    </body>
+    </html>
