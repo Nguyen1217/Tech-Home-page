@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Tech</title>
+    <!-- <link rel="stylesheet" href="https://unpkg.com/ress/dist/ress.min.css"> -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="assets/css/styles.css">
+    
+</head>
+<body>
+    <!-- header -->
+     <header>
+        <div class="header-wrapped">
+            <!-- navbar -->
+            <nav class="navbar">
+                <div class="container">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle = "collapse" data-target = "#myNavbar">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+
+                        <a class="navbar-brand" href="#">Logo</a>
+                    </div>
+                    <div class="collapse navbar-collapse" id = "myNavbar">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li><a href = "#" class="sign-in"><img src = "assets/img/signin.png"/>Sign in</a></li>
+                            <li><a href = "#" class = "sign-up">Sign up</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+            <!-- end of navbar -->
+
+            <!-- section 1 -->
+            <section class="home-section-1" id = "js-home-section-1"  v-on:click = "hidden = false;">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-7 col-sm-12">
+                            <h1 class="home-title">Connect with the community <br>you have interest</h1>
+                        </div>
+                        <!-- searching -->
+                        <div class="col-md-5 col-sm-12" id = "input-searching" style="margin-top:10px;">
+                            <div class="col-sm-12">
+                                <input class = "search_control" v-model = "searching"  type="text" :class = "{changeSize : hide}" placeholder="What is your problem?"/>           
+                            </div>
+                            <div class="col-sm-12">
+                                <ul class = "filteredArticles" v-cloak>
+                                    <li v-for = "article in filteredArticles" v-if = "hidden" class = "article" >
+                                        <a v-cloak :href = "'https://twitter.com/' + article.url" target="_blank">{{article.title}}</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- end of section 1 -->
+        </div>
+    </header>
+    <!-- end of header -->
+
+    
+    <!-- content-->
+    <div class="content">
+        <!-- avatar user -->
+        <section class = "topusers" id="js-topusers">
+            <div class="container-fluid">
+                <div class="col-md-1 col-sm-1 col-xs-1 column" style="right:87%;">
+                            <div class = "avatar">
+                                <a :href="'https://twitter.com/'+ column11[1].url_profile" target="_blank">
+                                        <img class="size" :src="'assets/img/avatar_users/' + column11[1].name + '.png'">	
+                                </a>			
+                            </div>
+                            <div class = "avatar">
+                                <a :href="'https://twitter.com/'+ column11[2].url_profile" target="_blank">
+                                    <img :src="'assets/img/avatar_users/' + column11[2].name + '.png'">	
+                                </a>			
+                            </div>
+                </div>
+                <div class="col-md-1 col-sm-1 col-xs-1 column" style="right:80%;">
+                    <div class = "avatar">
+                        <a :href="'https://twitter.com/'+ column1[0].url_profile" target="_blank">
+                            <img class="size" :src = "'assets/img/avatar_users/' + column1[0].name + '.png'">	
+                        </a>			
+                    </div>
+                    <div class = "avatar">
+                        <a :href="'https://twitter.com/'+ column1[1].url_profile" target="_blank">
+                            <img class="size" :src = "'assets/img/avatar_users/' + column1[1].name + '.png'">	
+                        </a>			
+                    </div>
+                    <img src="assets/img/avatar_users/avatar3.png" title="cut_image" alt="cut_image">
+                </div>
+                <div class="col-md-1 col-sm-1 col-xs-1 column" style="right:73%;">
+                    <div class = "avatar">
+                        <a :href="'https://twitter.com/'+ column2[0].url_profile" target="_blank">
+                                <img class="size" :src = "'assets/img/avatar_users/' + column2[0].name + '.png'">	
+                        </a>			
+                    </div>
+                    <div class = "avatar">
+                        <a :href="'https://twitter.com/'+ column2[1].url_profile" target="_blank">
+                                <img  :src = "'assets/img/avatar_users/' + column2[1].name + '.png'">	
+                        </a>			
+                    </div>
+                </div>
+                <div class="col-md-1 col-sm-1 col-xs-1 column" style="right:66%;">
+                    <div class = "avatar">
+                        <a :href="'https://twitter.com/'+ column3[0].url_profile" target="_blank">
+                                <img class="size" :src = "'assets/img/avatar_users/' + column3[0].name + '.png'">	
+                        </a>			
+                    </div>		
+                    <div class = "avatar">
+                            <a :href="'https://twitter.com/'+ column3[1].url_profile" target="_blank">
+                                    <img class="change-size1" :src = "'assets/img/avatar_users/' + column3[1].name + '.png'">	
+                            </a>			
+                    </div>
+                </div>
+                <div class="col-md-1 col-sm-1 col-xs-1 column" style="right:59%;">
+                    <div class = "avatar">
+                        <a :href="'https://twitter.com/'+ column4[0].url_profile" target="_blank">
+                                <img class="size" :src = "'assets/img/avatar_users/' + column4[0].name + '.png'">	
+                        </a>			
+                    </div>
+                    <div class = "avatar">
+                        <a :href="'https://twitter.com/'+ column4[1].url_profile" target="_blank">
+                                <img  :src = "'assets/img/avatar_users/' + column4[1].name + '.png'">	
+                        </a>			
+                    </div>
+                </div>
+                <div class="col-md-1 col-sm-1 col-xs-1 column" style="right:52%;">
+                    <div class = "avatar">
+                        <a :href="'https://twitter.com/'+ column5[0].url_profile" target="_blank">
+                                <img class="size" :src = "'assets/img/avatar_users/' + column5[0].name + '.png'">	
+                        </a>			
+                    </div>
+                    <div class = "avatar">
+                        <a :href="'https://twitter.com/'+ column5[1].url_profile" target="_blank">
+                                <img class="size"  :src = "'assets/img/avatar_users/' + column5[1].name + '.png'">	
+                        </a>			
+                    </div>
+                    <img src="assets/img/avatar_users/avatar3.png" title="cut_image" alt="cut_image">
+                </div>
+                <div class="col-md-1 col-sm-1 col-xs-1 column" style="right:45%;">
+                    <div class = "avatar">
+                        <a :href="'https://twitter.com/'+ column6[0].url_profile" target="_blank">
+                                <img class="size" :src = "'assets/img/avatar_users/' + column6[0].name + '.png'">	
+                        </a>			
+                    </div>
+                    <div class = "avatar">
+                        <a :href="'https://twitter.com/'+ column6[1].url_profile" target="_blank">
+                                <img  :src = "'assets/img/avatar_users/' + column6[1].name + '.png'">	
+                        </a>			
+                    </div>
+                </div>
+                <div class="col-md-1 col-sm-1 col-xs-1 column" style="right:38%;">
+                    <div class = "avatar">
+                        <a :href="'https://twitter.com/'+ column7[0].url_profile" target="_blank">
+                                <img class="change-size2" :src = "'assets/img/avatar_users/' + column7[0].name + '.png'">	
+                        </a>			
+                    </div>
+                    <div class = "avatar">
+                        <a :href="'https://twitter.com/'+ column7[1].url_profile" target="_blank">
+                                <img  :src = "'assets/img/avatar_users/' + column7[1].name + '.png'">	
+                        </a>			
+                    </div>
+                </div>
+                <div class="col-md-1 col-sm-1 col-xs-1 column" style="right:31%;">				
+                    <div class = "avatar">
+                        <a :href="'https://twitter.com/'+ column8[0].url_profile" target="_blank">
+                                <img class="size" :src = "'assets/img/avatar_users/' + column8[0].name + '.png'">	
+                        </a>			
+                    </div>
+                    <div class = "avatar">
+                        <a :href="'https://twitter.com/'+ column8[1].url_profile" target="_blank">
+                                <img :src = "'assets/img/avatar_users/' + column8[1].name + '.png'">	
+                        </a>			
+                    </div>
+                </div>
+                <div class="col-md-1 col-sm-1 col-xs-1 column" style="right:24%;">	
+                    <div class = "avatar">
+                        <a :href="'https://twitter.com/'+ column9[0].url_profile" target="_blank">
+                                <img class="size" :src = "'assets/img/avatar_users/' + column9[0].name + '.png'">	
+                        </a>			
+                    </div>
+                    <div class = "avatar">
+                        <a :href="'https://twitter.com/'+ column9[1].url_profile" target="_blank">
+                                <img class="size" :src = "'assets/img/avatar_users/' + column9[1].name + '.png'">	
+                        </a>			
+                    </div>
+                    <img class="cut_image" src="assets/img/avatar_users/avatar20.png" title="cut_image" alt="cut_image">
+                </div>
+                <div class="col-md-1 col-sm-1 col-xs-1 column" style="right:17%;">
+                    <div class = "avatar">
+                        <a :href="'https://twitter.com/'+ column10[0].url_profile" target="_blank">
+                                <img class="size" :src = "'assets/img/avatar_users/' + column10[0].name + '.png'">	
+                        </a>			
+                    </div>
+                    <div class = "avatar">
+                        <a :href="'https://twitter.com/'+ column10[1].url_profile" target="_blank">
+                                <img class="size" :src = "'assets/img/avatar_users/' + column10[1].name + '.png'">	
+                        </a>			
+                    </div>
+                    <img class="cut_image" src="assets/img/avatar_users/avatar23.png" title="cut_image" alt="cut_image">
+                </div>
+                <div class="col-md-1 col-sm-1 col-xs-1 column" style="right:10%;">
+                    <div class = "avatar">
+                        <a :href="'https://twitter.com/'+ column11[0].url_profile" target="_blank">
+                                <img class="size" :src="'assets/img/avatar_users/' + column11[0].name + '.png'">	
+                        </a>			
+                    </div>
+                    <div class = "avatar">
+                        <a :href="'https://twitter.com/'+ column11[1].url_profile" target="_blank">
+                                <img class="size" :src="'assets/img/avatar_users/' + column11[1].name + '.png'">	
+                        </a>			
+                    </div>
+                    <div class = "avatar">
+                        <a :href="'https://twitter.com/'+ column11[2].url_profile" target="_blank">
+                            <img :src="'assets/img/avatar_users/' + column11[2].name + '.png'">	
+                        </a>			
+                    </div>
+                </div>
+                <div class="col-md-1 col-sm-1 col-xs-1 column" style="right:3%;">
+                    <div class = "avatar">
+                        <a :href="'https://twitter.com/'+ column12[0].url_profile" target="_blank">
+                            <img class="size" :src="'assets/img/avatar_users/' + column12[0].name + '.png'">	
+                        </a>			
+                    </div>
+                    <div class = "avatar">
+                        <a :href="'https://twitter.com/'+ column12[1].url_profile" target="_blank">
+                            <img class="size" :src="'assets/img/avatar_users/' + column12[1].name + '.png'">	
+                        </a>			
+                    </div>
+                    <div class = "avatar">
+                        <a :href="'https://twitter.com/'+ column12[2].url_profile" target="_blank">
+                            <img class="size" :src="'assets/img/avatar_users/' + column12[2].name + '.png'">	
+                        </a>			
+                    </div>
+                    <img class="cut_image" src="assets/img/avatar_users/avatar30.png" title="cut_image" alt="cut_image">
+                </div>
+            </div>
+            </section>
+            <!-- section 2 -->
+           
+        <!-- section 2 -->
+        <section class="home-section-2" id="js-home-section-2">
+                <div class="container">
+                    <div class="row icons-3-wrapper">
+                            <icon-action></icon-action>
+                    </div>
+                    <div class = "btn-wrapper"><span class="btn-action">GET STARTED</span></div>
+                </div>
+            
+        </section>
+            <!-- end of section 2 -->
+
+            <!-- section 3 -->
+        <section class="home-section-3" id="js-home-section-3">
+            <div class="container">
+                <div class = "row make_question">
+                    <div class="col-md-7 col-sm-6 col-xs-6">
+                        <!-- list of tabs -->
+                        <ul class="listTab">
+                            <li v-cloak class="topic" v-for = "tab in tabs" v-bind:key="tab" v-bind:class = "{active: currentTab === tab}" v-on:click = "currentTab = tab">{{tab}}</li>
+                        </ul>
+                    </div>
+                    <!-- end list tabs -->
+                    <div class="col-md-2 col-sm-2 all-question">
+                        <img src = "assets/img/answer-1.png">
+                        <a href = "https://www.quora.com/answer" class = "all-ans" target="_blank">Answer</a>
+                    </div>
+                    <!-- toggle popup -->
+                    <div class="col-md-3 col-sm-4 col-xs-6 toggle-popup">
+                        <input class = "input-search" type="text" v-on:click = "showModal = true" placeholder="Search...">
+                        <img class = "icon-search"  v-on:click = "showModal = true" src="assets/img/search.png">
+                    </div>
+                </div>
+                
+
+                <!--  popup -->
+                
+                    <modal 
+                        v-if = "showModal" 
+                        v-on:close = "showModal = false" 
+                        :userinfo = "user">
+                    </modal>
+                <!-- top questions -->
+                    <component 
+                        v-bind:is="currentTabComponent" 
+                        class="tab" 
+                        :alldata1 = "posts.tab_top" 
+                        :alldata2 = "posts.tab_english" 
+                        :alldata3 = "posts.tab_technology"
+                       
+                        >
+                    </component >
+                
+            </div>
+        </section>
+    </div>
+        <!-- end of section 3 -->
+    <!-- end of content -->
+
+   
+    <!-- post childrent COMPONENT template-->
+    <template id="post">
+        <div class="post">
+            <div class="col-md-7 col-sm-9 col-xs-10 post-content">
+                <div class="avatar pull-left">
+                    <a :href = "'https://twitter.com/'+item.url_profile" target="_blank" >
+                        <img class="thumbnail-asker" :src = "'assets/img/avatar_users/' + item.avar_ask + '.png'"/>
+                    </a>
+                </div>
+            
+                <h2 class="title">
+                    <a :href = "'https://scifi.stackexchange.com/questions/' + item.url + '/how-is-the-name-gandalf-pronounced'" target = "_blank"class="title">
+                        {{item.title}}
+                    </a>
+                    <br>
+                    <small>{{item.num_answer}} answers</small>
+                    <small>{{item.time_ask}}</small>
+                </h2>
+                
+                <div class="icon-action">
+                    <p class="icon">
+                        <a :href = "'https://scifi.stackexchange.com/questions/' + item.url + '/how-is-the-name-gandalf-pronounced'" target = "_blank">
+                            <img src = "assets\img\answer-2.png"/>
+                            <span>Answer</span>
+                        </a>
+                    </p>
+                    <p class="icon" v-on:click = "count">
+                        <img src="assets\img\follow.png"/>
+                        <span> {{status}} {{item.num_follow}}</span>
+                      
+                    </p>
+                </div>
+            </div>
+            <div class="col-xs-2 visible-xs mobile">
+                <span>{{item.num_answer}}</span>
+                <a :href = "'https://scifi.stackexchange.com/questions/' + item.url + '/how-is-the-name-gandalf-pronounced'" target = "_blank"><span class="glyphicon glyphicon-circle-arrow-right"></span></a>
+            </div>
+            <div class="col-md-1 hidden-xs hidden-sm post-eval">
+                <span>{{item.num_posts}}</span>
+                <br>
+                <a :href = "'https://scifi.stackexchange.com/questions/' + item.url + '/how-is-the-name-gandalf-pronounced'" target = "_blank">posts</a>
+            </div>
+            <div class="col-md-1 hidden-xs hidden-sm post-eval">
+                <span>{{item.num_views}}</span>
+                <br>
+                <a :href = "'https://scifi.stackexchange.com/questions/' + item.url + '/how-is-the-name-gandalf-pronounced'" target = "_blank">views</a>
+            </div>
+            <div class="col-md-3 col-sm-3 hidden-xs  post-answer">
+                <div class="card">
+                    <p>
+                        <a><img :src = "'assets/img/avatar_users/' + item.avar_asn + '.png'" class="thumb-answer"/>{{item.name}}</a>
+                        <a style = "color:#8c98a2;margin-left:10px;">{{item.time_ans}}</a>
+                    </p>
+                    <div class = "ans-near">
+                        <p style = "line-height:1.5;">{{item.ans_nearest}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </template>
+
+
+    <script src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
+    <script src="assets/js/home.js"></script>
+</body>
+</html>
